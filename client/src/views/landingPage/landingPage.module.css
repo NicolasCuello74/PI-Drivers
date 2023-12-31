@@ -1,0 +1,29 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  background-image: url(https://a.espncdn.com/photo/2021/0321/r830127_1296x729_16-9.jpg); /* Ajusta la URL de la imagen */
+  background-size: cover; /* Cubre todo el contenedor, sin distorsionar la relación de aspecto */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center center; /* Centra la imagen horizontal y verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: black;
+  margin-top: -350px;
+  background-color: aliceblue;
+}
+
+.enterButton {
+  background-color: #fe4a49;
+  color: black;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: wait;
+  font-size: 20px;
+}

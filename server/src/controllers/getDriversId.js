@@ -9,7 +9,9 @@ const getDriversId = async (req, res) => {
       const response = await getDriversDB(id);
       const data = response;
       const cleanedData = {
-        name: data.forename,
+        id: data.id,
+        forename: data.forename,
+        surname: data.surname,
         description: data.description,
         image: data.image,
         nationality: data.nationality,
@@ -22,7 +24,6 @@ const getDriversId = async (req, res) => {
       const response = await axios.get(url);
       const datas = response.data;
       const {
-
         name: name,
         description: description,
         image: image,
@@ -35,11 +36,12 @@ const getDriversId = async (req, res) => {
         forename: name.forename,
         surname: name.surname,
         description,
-        image: image.url,
+        image: image.url || "https://i.pinimg.com/564x/1e/1f/66/1e1f66a3ce77beea31a833f0008648d3.jpg",
         nationality,
         dob,
         teams: teams,
       };
+
       res.status(200).json(driversFromServer);
     }
   } catch (error) {

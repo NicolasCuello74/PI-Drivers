@@ -1,0 +1,14 @@
+.form{
+    border: none;
+    margin-top: 20px;
+    padding: 0px;
+    width: 250px;
+    line-height: 30px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+}
+.SearchBar{
+    display: flex;
+    justify-content: center;
+}

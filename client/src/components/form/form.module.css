@@ -1,0 +1,60 @@
+.form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #30013796;
+    border: 1px solid #99099b;
+    border-radius: 5px;
+    text-align: center;
+    
+  }
+
+  .caja {
+    margin: 10px 30px 10px 10px;
+    justify-content: center;
+  }
+
+  .label {
+    font-weight: bold;
+    color: aliceblue;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
+  }
+
+
+  .input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: medium;
+    font-weight: bold;
+    transition: border-color 0.3s ease-in-out; /* Transición suave del color del borde */
+  }
+  .input:focus {
+    outline: none; /* Elimina el contorno predeterminado en el foco */
+    border-color: #2ecc71; /* Cambia el color del borde al estar enfocado */
+    box-shadow: 0 0 5px rgba(46, 204, 113, 0.5); /* Sutil sombra al estar enfocado */
+}
+
+  .errorMessage {
+    color: rgb(235, 231, 231);
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .button {
+    background-color: #99099b;
+    color: aliceblue;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }

@@ -5,8 +5,7 @@ const getDrivers = async (req, res) => {
   try {
     const url = "http://localhost:5000/drivers";
     const response = await axios.get(url);
-    const datas = response.data.map((driver) => {
-      return {
+    const arrayDriversApi = response.data.map((driver) => ({
         id: driver.id,
         forename: driver.name.forename,
         surname: driver.name.surname,
@@ -15,28 +14,39 @@ const getDrivers = async (req, res) => {
         nationality: driver.nationality,
         dob: driver.dob,
         teams: driver.teams,
-      };
-    });
-    const arrayDriversApi = datas;
+      }));
+
 
     const arrayDriversDb = await Driver.findAll(
       {
         include: Team,
-      });
+      }
+      
+      );
+    const CleanDriversDb = await arrayDriversDb.map((driver)=>  ({
+      id: driver.id,
+      forename: driver.forename,
+      surname: driver.surname,
+      description: driver.description,
+      image: driver.image,
+      nationality: driver.nationality,
+      dob: driver.dob,
+      teams: driver.Teams.map((team)=>(team.name)).toString(),
+    }))
 
     let allDrivers = [];
-
-    if (arrayDriversApi & arrayDriversDb) {
-      allDrivers = [...arrayDriversApi, ...arrayDriversDb];
-    } else if (arrayDriversApi) {
+    
+    if (arrayDriversApi.length > 0 && CleanDriversDb.length > 0) {
+      allDrivers = [...arrayDriversApi, ...CleanDriversDb];
+    } else if (arrayDriversApi.length > 0) {
       allDrivers = arrayDriversApi;
     } else {
-      allDrivers = arrayDriversDb;
+      allDrivers = CleanDriversDb;
     }
 
     const driversWithDefaultImage = allDrivers.map((driver) => ({
       ...driver,
-      image: driver.image || "F1.svg", // Ruta de imagen por defecto
+      image: driver.image || "https://i.pinimg.com/564x/1e/1f/66/1e1f66a3ce77beea31a833f0008648d3.jpg",
     }));
 
     res.status(200).json(driversWithDefaultImage);
