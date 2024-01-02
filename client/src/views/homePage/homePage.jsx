@@ -76,20 +76,18 @@ function HomePage() {
   return (
     <>
       <div className={Styles.container}>
-        <div className={Styles.flag}></div>
-        <h2 className={Styles.text}>DRIVERS FROM NICOLAS CUELLO</h2>
+        <div className={Styles.flag}>
+          <h2 className={Styles.text}>DRIVERS FROM NICOLAS CUELLO</h2>
+        </div>
       </div>
-
-      <div className="favorites__ordered">
+      <div className={Styles.containerFiltros}>
         <select name="Orden" onChange={handlerOrder}>
           <option value="AZ">Orden alfabetico Ascendente</option>
           <option value="ZA">Orden alfabetico Descendente</option>
           <option value="Fa">Fecha de nacimiento Ascendente</option>
           <option value="FD">Fecha de nacimiento Descendente</option>
         </select>
-      </div>
 
-      <div>
         <select name="filtrado" onChange={handlerFilter} value={setSelectedTeam}>
           <option value="Todos">Todos los teams</option>
           {allTeams.map((team) => (
@@ -99,9 +97,9 @@ function HomePage() {
           ))}
         </select>
       </div>
+        <NavBar/>
 
       <div className={Styles.home}>
-        <NavBar />
         <Cards allDrivers={currentDrivers} />
         <div className={Styles.paginations}>
           {pageNumbers.map((number) => (

@@ -1,14 +1,23 @@
-.form{
+ .Input {
+    padding: 10px;
+    margin: 40px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilo para el botón de envío */
+  input[type="submit"] {
+    padding: 10px 20px;
+    color: black;
     border: none;
-    margin-top: 20px;
-    padding: 0px;
-    width: 250px;
-    line-height: 30px;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: center;
-}
-.SearchBar{
-    display: flex;
-    justify-content: center;
-}
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Cambia el estilo del cursor cuando pasa sobre el botón */
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }

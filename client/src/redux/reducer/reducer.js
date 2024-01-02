@@ -13,11 +13,9 @@ let initialState = {
   loading: false,
   allDrivers: [],
   driversCopy: [],
-  driversFilter: [],
   allTeams: [],
   posts: [],
   detail: [],
-  filterByTeam: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -53,7 +51,7 @@ function rootReducer(state = initialState, action) {
         loading: true,
       };
     case ORDER:
-      const ordered = state.allDrivers.slice(); // Clona el array para evitar mutar el estado directamente
+      const ordered = state.allDrivers.slice(); // Clonación del array
       ordered.sort((a, b) => {
         if (action.payload === "AZ") {
           return a.forename.localeCompare(b.forename); // Comparación de cadenas
@@ -72,47 +70,17 @@ function rootReducer(state = initialState, action) {
       };
     case FILTER:
       const selectedTeam = action.payload;
-      const allDrivers = state.driversCopy; // Mantén una copia de todos los conductores sin filtrar
-    
-      // Si el equipo seleccionado es "Todos", muestra todos los conductores
-      if (selectedTeam === "Todos") {
-        return {
-          ...state,
-          allDrivers: allDrivers,
-        };
-      }
-    
-      // Filtra los conductores por el equipo seleccionado
-      const filteredDrivers = allDrivers.filter((driver) => {
-        if (Array.isArray(driver.teams)) {
-          return driver.teams.some((team) => team === selectedTeam);
-        } else {
-          return driver.teams === selectedTeam;
+      const copi = state.driversCopy; // Copia de todos los conductores sin filtrar
+      // Filtro de los conductores por el equipo seleccionado
+      const filteredDrivers = copi.filter((driver) => {
+        if (driver.teams) {
+          return driver.teams.includes(selectedTeam);
         }
       });
-
       return {
         ...state,
         allDrivers: filteredDrivers,
       };
-      // const filters = state.allDrivers.slice(); //realizo copia de mi estado
-      // const filterByTeam = filters.filter(
-      //   (driver) => {S
-      //     if(Array.isArray(driver.teams)){
-      //       return driver.teams.some((team) => team === action.payload);
-      //     } else {
-      //       return driver.teams === action.payload
-      //     }
-      //   }
-      // );
-      // const filterByTeam = filters.filter((driver) => {
-      //   const driverTeams = driver.teams.split(",").map((team) => team.trim());
-      //   return driverTeams.includes(action.payload);
-      // });
-      // return {
-      //   ...state,
-      //   allDrivers: filterByTeam,
-      // };
     default:
       return state;
   }

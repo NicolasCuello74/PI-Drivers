@@ -1,30 +1,16 @@
 .searchBox{
     border: none;
-    padding: 10px;
-    width: 200px;
-    line-height: 30px;
-    margin-bottom: 30px;
+    margin: 10px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
 }
-.form{
-    border: none;
-    padding: 6px;
-    width: 300px;
-    line-height: 30px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-.input{
-    width: 200px;
-    padding: 10px;
-}
+
 .button{
     margin-top: 20px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
 }

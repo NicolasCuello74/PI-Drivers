@@ -1,26 +1,38 @@
 .detailContainer {
-    background-color: #541818;
-    padding: 20px;
-    border: 1px solid #2e2626;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-  .img {
-    max-width: 20em;;
-    height: auto;
-    margin-top: 20px;
-    border-radius: 5px;
-  }
-  .enterButton{
-    
-  }
+  background-color: #541818;
+  padding: 20px;
+  border: 1px solid #2e2626;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
 
-  
+.h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.img {
+  max-width: 20em;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.enterButton {
+  border: none; 
+  color: black; 
+  padding: 14px 28px; 
+  cursor: pointer; 
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #f44336; 
+}
+
+.enterButton:hover {
+  background: #da190b;
+  color: white;
+}
