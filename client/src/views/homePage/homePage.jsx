@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDrivers, getTeams } from "../../redux/actions/actions";
-import { orderCard, filterCard } from "../../redux/actions/actions";
-import { useState } from "react";
+import {
+  getDrivers,
+  getTeams,
+  orderCard,
+  filterCard,
+  setCurrentPage,
+} from "../../redux/actions/actions";
 import NavBar from "../../components/navbar/navbar";
 import Cards from "../../components/cards/cards";
 import Styles from "../homePage/homePage.module.css";
@@ -11,37 +15,16 @@ function HomePage() {
   const dispatch = useDispatch();
   const allDrivers = useSelector((state) => state.allDrivers);
   const allTeams = useSelector((state) => state.allTeams);
-  const [selectedTeam, setSelectedTeam] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentPage);
   const driversPerPage = 9;
-
-  //*Filtro con la Backend*//
-  //const [searchString, setSearchString] = useState("");
-
-  // function handleChange(e) {
-  //   e.preventDefault();
-  //   setSearchString(e.target.value);
-  // }
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   dispatch(getByName(searchString));
-  // }
-
-  //*Filtro sobre el estado*//
-  // const [filtered, setFiltered] = useState(allDrivers);
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   const filtered = allDrivers.filter((driver) =>
-  //     driver.forename.includes(searchString)
-  //   );
-  //   setFiltered(filtered);
-  // }
+  const filterState = useSelector((state) => state.filterState);
 
   useEffect(() => {
-    dispatch(getDrivers());
+    if (filterState.length === 0) {
+      dispatch(getDrivers());
+    }
     dispatch(getTeams());
-  }, [dispatch]);
+  }, [dispatch, filterState.length]);
 
   //ORDENAMIENTO Y FILTRADO
   const handlerOrder = (e) => {
@@ -52,43 +35,83 @@ function HomePage() {
   const handlerFilter = (e) => {
     e.preventDefault();
     const filters = e.target.value;
-    if (filters !== selectedTeam) {
-      dispatch(filterCard(filters));
+    dispatch(filterCard(filters));
+  };
+
+  //Botones para mostrar segun cantidad de drivers
+  let pageNumbers = [];
+
+  if (filterState.length > 0) {
+    for (let i = 1; i <= Math.ceil(filterState.length / driversPerPage); i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    for (let i = 1; i <= Math.ceil(allDrivers.length / driversPerPage); i++) {
+      pageNumbers.push(i);
+    }
+  }
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      dispatch(setCurrentPage(currentPage - 1));
     }
   };
-  //Botones de paginación
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(allDrivers.length / driversPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  // Agrega el siguiente código para realizar la paginación
+
+  // Función para manejar la navegación a la siguiente página
+  const handleNextPage = () => {
+    const pageNumbers =
+      filterState.length > 0
+        ? Math.ceil(filterState.length / driversPerPage)
+        : Math.ceil(allDrivers.length / driversPerPage);
+
+    if (currentPage < pageNumbers) {
+      dispatch(setCurrentPage(currentPage + 1));
+    }
+  };
+
+  // Botones en el medio
+  const middlePageButtons = Array.from(
+    { length: 3 },
+    (_, index) => currentPage + index
+  );
+
+  // Paginación
   const indexOfLastDriver = currentPage * driversPerPage;
   const indexOfFirstDriver = indexOfLastDriver - driversPerPage;
+
+  const mostrarFiltrado = filterState.slice(
+    indexOfFirstDriver,
+    indexOfLastDriver
+  );
   const currentDrivers = allDrivers.slice(
     indexOfFirstDriver,
     indexOfLastDriver
   );
 
   const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    dispatch(setCurrentPage(pageNumber));
   };
 
   return (
     <>
-      <div className={Styles.container}>
+      <div className={Styles.containerTitulo}>
         <div className={Styles.flag}>
-          <h2 className={Styles.text}>DRIVERS FROM NICOLAS CUELLO</h2>
+          <h2 className={Styles.text}>DRIVERS </h2>
         </div>
       </div>
       <div className={Styles.containerFiltros}>
-        <select name="Orden" onChange={handlerOrder}>
-          <option value="AZ">Orden alfabetico Ascendente</option>
-          <option value="ZA">Orden alfabetico Descendente</option>
+        <select className={Styles.select} name="Orden" onChange={handlerOrder}>
+          <option value="AZ">Orden alfabetico A-Z</option>
+          <option value="ZA">Orden alfabetico Z-A</option>
           <option value="Fa">Fecha de nacimiento Ascendente</option>
           <option value="FD">Fecha de nacimiento Descendente</option>
         </select>
 
-        <select name="filtrado" onChange={handlerFilter} value={setSelectedTeam}>
+        <select
+          className={Styles.select}
+          name="filtrado"
+          onChange={handlerFilter}
+        >
           <option value="Todos">Todos los teams</option>
           {allTeams.map((team) => (
             <option key={team.id} value={team.name}>
@@ -97,17 +120,43 @@ function HomePage() {
           ))}
         </select>
       </div>
-        <NavBar/>
-
+      <NavBar />
       <div className={Styles.home}>
-        <Cards allDrivers={currentDrivers} />
-        <div className={Styles.paginations}>
-          {pageNumbers.map((number) => (
-            <button key={number} onClick={() => paginate(number)}>
-              {number}
-            </button>
-          ))}
-        </div>
+        <Cards
+          allDrivers={
+            mostrarFiltrado.length > 0 ? mostrarFiltrado : currentDrivers
+          }
+        />
+      </div>
+      <div className={Styles.paginations}>
+        <button
+          className={Styles.buttonPage}
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+        <span className={Styles.spans}></span>
+        {middlePageButtons.map((number) => (
+          <button
+            className={`${Styles.buttonPage} ${
+              number === currentPage ? Styles.active : ""
+            }`}
+            key={number}
+            onClick={() => paginate(number)}
+            disabled={number > pageNumbers}
+          >
+            {number}
+          </button>
+        ))}
+        <span className={Styles.spans}></span>
+        <button
+          className={Styles.buttonPage}
+          onClick={handleNextPage}
+          disabled={currentPage === pageNumbers}
+        >
+          Next
+        </button>
       </div>
     </>
   );

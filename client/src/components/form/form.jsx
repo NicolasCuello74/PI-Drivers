@@ -10,7 +10,7 @@ function Forms() {
   const navigate = useNavigate();
 
   const teams = useSelector((state) => state.allTeams);
-  
+
   const [input, setInput] = useState({
     forename: "",
     surname: "",
@@ -20,7 +20,14 @@ function Forms() {
     dob: "",
     teams: [],
   });
-  const [errors, setErrors] = useState({});
+
+  const [errors, setErrors] = useState({
+    forename: "",
+    surname: "",
+    description: "",
+    image: "",
+    dob: "",
+  });
 
   useEffect(() => {
     dispatch(getTeams());
@@ -28,10 +35,12 @@ function Forms() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
+
     if (name === "teams") {
-      const selectedTeams = Array.from(e.target.selectedOptions, (option) => option.value);
-  
+      const selectedTeams = Array.from(
+        e.target.selectedOptions,
+        (option) => option.value
+      );
       setInput({
         ...input,
         [name]: selectedTeams,
@@ -42,29 +51,30 @@ function Forms() {
         [name]: value,
       });
     }
-  
-    setErrors(
-      validate({
-        ...errors,
-        [name]: value,
-      })
-    );
+    const fieldErrors = validate({ ...input, [name]: value });
+    setErrors({
+      ...errors,
+      [name]: fieldErrors[name],
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    //Asegúrate de que el campo teams sea un array, no una cadena
+    const validationErrors = validate(input);
+    if (
+      Object.keys(validationErrors).some((key) => validationErrors[key] !== "")
+    ) {
+      setErrors(validationErrors);
+      return;
+    }
     const payload = {
       ...input,
       teams: Array.isArray(input.teams) ? input.teams : [input.teams],
     };
-  
     try {
-      // Realiza la solicitud al servidor con el formato correcto
       await dispatch(postDriver(payload));
-  
-      // Restablece el estado del formulario después de enviar
+
+      // Restablecer el estado del formulario
       setInput({
         forename: "",
         surname: "",
@@ -74,15 +84,16 @@ function Forms() {
         dob: "",
         teams: [],
       });
-  
-      // Muestra algún tipo de confirmación al usuario
-      alert("Driver creado exitosamente");
-  
-      // Redirige o realiza otras acciones según tu aplicación
-      navigate("/home");
+
+      alert("Driver creado exitosamente"); //Si el usuario fue creado correctamente
+      navigate("/home"); 
     } catch (error) {
-      // Maneja los errores de manera apropiada, muestra mensajes de error al usuario si es necesario
-      console.error("Error al crear el conductor:", error);
+      if (error.response && error.response.data) {
+        const serverErrors = error.response.data;
+        alert(serverErrors);
+      } else {
+        alert("Error al crear el conductor:", error);
+      }
     }
   };
 
@@ -98,6 +109,7 @@ function Forms() {
               value={input.value}
               onChange={handleChange}
             />
+            {errors.forename && <p className={Styles.errorMessage}>{errors.forename}</p>}
           </div>
           <div>
             <label className={Styles.label}> Surname:</label>
@@ -107,6 +119,7 @@ function Forms() {
               value={input.value}
               onChange={handleChange}
             />
+            <p className={Styles.errorMessage}>{errors.surname}</p>
           </div>
           <div>
             <label className={Styles.label}> Description:</label>
@@ -116,6 +129,7 @@ function Forms() {
               value={input.value}
               onChange={handleChange}
             />
+            <p className={Styles.errorMessage}>{errors.description}</p>
           </div>
           <div>
             <label className={Styles.label}> Image: URL</label>
@@ -125,6 +139,7 @@ function Forms() {
               value={input.value}
               onChange={handleChange}
             />
+            <p className={Styles.errorMessage}>{errors.image}</p>
           </div>
           <div>
             <label className={Styles.label}> Nationality</label>
@@ -134,6 +149,7 @@ function Forms() {
               value={input.value}
               onChange={handleChange}
             />
+            <p className={Styles.errorMessage}>{errors.nationality}</p>
           </div>
           <div>
             <label className={Styles.label}> DOB:</label>
@@ -146,7 +162,10 @@ function Forms() {
             <p className={Styles.errorMessage}>{errors.dob}</p>
           </div>
           <div>
-            <label className={Styles.label}> Teams:</label>
+            <label className={Styles.label}>
+             
+              Teams: Mantener ctrl para seleccionar más de 1 team
+            </label>
             <select
               className={Styles.input}
               name="teams"
@@ -155,16 +174,27 @@ function Forms() {
               multiple
             >
               {teams.map((team) => (
-                <option key={team.id} value={team.id} selected={input.teams.includes(team)}>
+                <option
+                  key={team.id}
+                  value={team.id}
+                  selected={input.teams.includes(team)}
+                >
                   {team.name}
                 </option>
               ))}
             </select>
+            <p className={Styles.errorMessage}>{errors.teams}</p>
           </div>
         </div>
+        {Object.values(errors).some((error) => error !== "") ? (
+          <span className={Styles.SPAN}>
+            Corrige los errores antes de enviar.
+          </span>
+        ) : (
           <button type="submit" className={Styles.button}>
-            Enviar
+            Send
           </button>
+        )}
       </form>
     </>
   );

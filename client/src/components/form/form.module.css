@@ -1,12 +1,11 @@
 .form {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #30013796;
-    border: 1px solid #99099b;
+    background-color: #ebe6ea;
+    border: 1px solid #ff8862;
     border-radius: 5px;
     text-align: center;
-    
   }
 
   .caja {
@@ -16,7 +15,7 @@
 
   .label {
     font-weight: bold;
-    color: aliceblue;
+    color: black;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -43,18 +42,31 @@
 }
 
   .errorMessage {
-    color: rgb(235, 231, 231);
+    color: red;
     font-size: 14px;
     margin-top: 5px;
   }
 
   .button {
-    background-color: #99099b;
-    color: aliceblue;
+    background-color: aliceblue;
+    color: black;
     margin-top: 20px;
     padding: 10px 20px;
+    border-color: #3498db;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
   }
+  .SPAN {
+    display: block;
+    background-color: #ffcccb; /* Color de fondo de la alerta */
+    color: #ff0000; /* Color del texto de la alerta */
+    padding: 10px; /* Espaciado interno de la alerta */
+    margin-top: 10px; /* Margen superior para separar la alerta de los mensajes de error */
+    border: 1px solid #ff0000; /* Borde de la alerta */
+    border-radius: 5px; /* Bordes redondeados de la alerta */
+    font-size: 16px; /* Tamaño del texto de la alerta */
+    font-weight: bold; /* Negrita para resaltar la alerta */
+  }
+  

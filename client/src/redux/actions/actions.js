@@ -7,16 +7,25 @@ export const ORDER = "ORDER";
 export const DETAIL = "GET_DETAIL";
 export const LOADING = "LOADING";
 export const POST_DRIVER = "POST_DRIVER";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const RESETEAR = 'RESETEAR';
 const URL = "http://localhost:3001";
 
 export function getDrivers() {
   return async function (dispatch) {
+    dispatch({ type: LOADING });
     const response = await axios.get(`${URL}/drivers`);
     return dispatch({
       type: "GET_DRIVERS",
       payload: response.data,
     });
   };
+}
+
+export const resetear = () => {
+    return {
+      type: 'RESETEAR',
+    };
 }
 
 export function getByName(name) {
@@ -41,11 +50,17 @@ export function postDriver(payload) {
 
 export function getDriverId(id) {
  return async function (dispatch) {
-    const response = await axios.get(`${URL}/detail/${id}`);
-    return dispatch({
-      type: "GET_DETAIL",
-      payload: response.data,
-    });
+    try {
+      dispatch({ type: LOADING });
+      const response = await axios.get(`${URL}/drivers/${id}`);
+      dispatch({
+        type: "GET_DETAIL",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+
  };
 }
 
@@ -58,6 +73,11 @@ export function getTeams() {
     })
   }  
 }
+
+export const setCurrentPage = (pageNumber) => ({
+  type: 'SET_CURRENT_PAGE',
+  payload: pageNumber,
+});
 
 export const filterCard = (teams) =>{   
   return {

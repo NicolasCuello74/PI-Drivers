@@ -1,48 +1,54 @@
 import styles from "../detailPage/detailPage.module.css";
-import axios from "axios";
-import Loading from "../../components/loading/loading"
+import Loading from "../../components/loading/loading";
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux";
+import { getDriverId } from "../../redux/actions/actions";
 
 function DetailPage() {
   const { id } = useParams();
-
-  const [driver, setDriver] = useState({});
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loading = useSelector((state)=> state.loading)
   
   useEffect(() => {
-    axios(`http://localhost:3001/drivers/${id}`).then(
-      ({ data }) => {
-        if (data.id) {
-          setDriver(data);
-          setLoading(false);
-        } else {
-          window.alert("No hay personajes con ese ID");
-        }
-      }
-    );
-    return setDriver({});
-    }, [id]);
+    dispatch(getDriverId(id));
+  }, [dispatch, id]);
+  
+  const driver = useSelector((state) => state.detail)
 
   return loading ? ( <Loading/> 
   ) : (
     <>
-    <div className={styles.detailContainer}>
-    <button className={styles.enterButton} onClick={()=>{navigate("/home")}}>
-     Volver a home
-    </button>
-    <img className={styles.img} src={driver.image} alt={driver.name} />
-    <h2 className={styles.h2}>{driver.forename}</h2>
-    <h2 className={styles.h2}>{driver.surname}</h2>
-    <p className={styles.statusSpecies}>ID: {driver.id}</p>
-      <p className={styles.statusSpecies}>Nationality: {driver.nationality}</p>
-      <p className={styles.statusSpecies}>DOB: {driver.dob}</p>
-      <p className={styles.statusSpecies}>Description: {driver.description}</p>
-      <p className={styles.statusSpecies}>Teams: {driver.teams}</p>
-    </div>
+      <div className={styles.detailContainer}>
+        <section>
+          <button
+            className={styles.enterButton}
+            onClick={() => {
+              navigate("/home");
+            }}
+          >
+            Return to home
+          </button>
+        </section>
+        <section>
+          <img className={styles.img} src={driver.image} alt={driver.name} />
+          <h2 className={styles.h2}>Forename: {driver.forename}</h2>
+          <h2 className={styles.h2}>Surname: {driver.surname}</h2>
+          <p className={styles.p}>ID: {driver.id}</p>
+          <p className={styles.p}>
+            Nationality: {driver.nationality}
+          </p>
+          <p className={styles.p}>DOB: {driver.dob}</p>
+          <p className={styles.p}>
+            Description: {driver.description}
+          </p>
+          <p className={styles.p}>Teams: {driver.teams}</p>
+        </section>
+      </div>
     </>
-  )
-  }
+  );
+}
 
-  export default DetailPage
+export default DetailPage;

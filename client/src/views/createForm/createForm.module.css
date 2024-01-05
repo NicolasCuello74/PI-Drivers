@@ -1,0 +1,14 @@
+.containerButton{
+    margin: 20px;
+}
+
+.enterButton{
+    background-color: aliceblue;
+    color: black;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }

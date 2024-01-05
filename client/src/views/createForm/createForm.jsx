@@ -7,11 +7,11 @@ function CreateForm() {
 
   return (
     <>
-    <div>
-      <Forms/>
+    <div className={Styles.containerButton}>
+      <button className={Styles.enterButton} onClick={()=>{navigate("/home")}}> Return to home</button>
     </div>
     <div>
-      <button className={Styles.enterButton} onClick={()=>{navigate("/home")}}> Volver a home</button>
+      <Forms/>
     </div>
     </>
   )
