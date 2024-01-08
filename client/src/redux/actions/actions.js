@@ -11,15 +11,14 @@ export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const RESETEAR = 'RESETEAR';
 const URL = "http://localhost:3001";
 
-export function getDrivers() {
+export const getDrivers = () => {
   return async function (dispatch) {
-    dispatch({ type: LOADING });
     const response = await axios.get(`${URL}/drivers`);
     return dispatch({
       type: "GET_DRIVERS",
       payload: response.data,
-    });
-  };
+    })
+  }
 }
 
 export const resetear = () => {

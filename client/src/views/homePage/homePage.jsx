@@ -16,15 +16,13 @@ function HomePage() {
   const allDrivers = useSelector((state) => state.allDrivers);
   const allTeams = useSelector((state) => state.allTeams);
   const currentPage = useSelector((state) => state.currentPage);
-  const driversPerPage = 9;
   const filterState = useSelector((state) => state.filterState);
+  const driversPerPage = 9;
 
   useEffect(() => {
-    if (filterState.length === 0) {
-      dispatch(getDrivers());
-    }
+    dispatch(getDrivers());
     dispatch(getTeams());
-  }, [dispatch, filterState.length]);
+  }, [dispatch]);
 
   //ORDENAMIENTO Y FILTRADO
   const handlerOrder = (e) => {
@@ -50,14 +48,14 @@ function HomePage() {
       pageNumbers.push(i);
     }
   }
-
+  // Boton para navegar a la pagina anterior
   const handlePrevPage = () => {
     if (currentPage > 1) {
       dispatch(setCurrentPage(currentPage - 1));
     }
   };
 
-  // Función para manejar la navegación a la siguiente página
+  // Navegación a la siguiente página
   const handleNextPage = () => {
     const pageNumbers =
       filterState.length > 0
@@ -69,9 +67,9 @@ function HomePage() {
     }
   };
 
-  // Botones en el medio
+  // Boton del medio
   const middlePageButtons = Array.from(
-    { length: 3 },
+    { length: 1 },
     (_, index) => currentPage + index
   );
 
@@ -95,9 +93,7 @@ function HomePage() {
   return (
     <>
       <div className={Styles.containerTitulo}>
-        <div className={Styles.flag}>
           <h2 className={Styles.text}>DRIVERS </h2>
-        </div>
       </div>
       <div className={Styles.containerFiltros}>
         <select className={Styles.select} name="Orden" onChange={handlerOrder}>

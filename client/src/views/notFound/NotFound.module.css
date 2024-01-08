@@ -1,0 +1,10 @@
+.imga{
+    display: flex;
+    justify-content: space-evenly;
+    max-width: '80%';
+    height: 'auto';
+}
+.button1{
+    display: flex;
+    justify-content: center;
+}

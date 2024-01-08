@@ -1,6 +1,9 @@
 .cardsList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-  grid-gap: 20px; /* Ajusta el espacio entre las tarjetas*/
-  text-decoration: none;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 2rem;
+  margin-left: 60px;
+  width: 100%;
 }

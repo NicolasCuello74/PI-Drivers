@@ -1,8 +1,7 @@
 .detailContainer {
-  display: flex;
-  align-items: center;
+  display:block;
+  align-items:center;
   background-color: #ebe6ea;
-  padding: 10px;
   border: 2px solid #2e2626;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -10,6 +9,15 @@
   max-width: 1000px;
   margin: 50px auto;
   font-family: "Barlow";
+}
+
+.containerDescription{
+  justify-content:center;
+  margin: auto;
+  padding: 5px;
+}
+.containerButton{
+  margin: 15px;
 }
 
 .h2 {

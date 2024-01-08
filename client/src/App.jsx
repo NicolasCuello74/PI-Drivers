@@ -11,11 +11,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/*" element={<NotFound message="Page"/>}/>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/form" element={<CreateForm />} />
-          <Route path="/*" element={<NotFound message="Page"/>}/>
         </Routes>
       </BrowserRouter>
     </div>
