@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
 import "./App.css"
 import LandingPage from "./views/landingPage/landingPage";
 import HomePage from "./views/homePage/homePage";
@@ -9,7 +8,6 @@ import NotFound from "./views/notFound/NotFound";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
         <Routes>
           <Route path="/*" element={<NotFound message="Page"/>}/>
           <Route path="/" element={<LandingPage />} />
@@ -17,7 +15,6 @@ function App() {
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/form" element={<CreateForm />} />
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }

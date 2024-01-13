@@ -8,7 +8,7 @@ export const DETAIL = "GET_DETAIL";
 export const LOADING = "LOADING";
 export const POST_DRIVER = "POST_DRIVER";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-export const RESETEAR = 'RESETEAR';
+export const BORRAR = "BORRAR";
 const URL = "http://localhost:3001";
 
 export const getDrivers = () => {
@@ -21,10 +21,10 @@ export const getDrivers = () => {
   }
 }
 
-export const resetear = () => {
-    return {
-      type: 'RESETEAR',
-    };
+export const borrarFiltros = () => {
+  return {
+    type: "BORRAR",
+  }
 }
 
 export function getByName(name) {

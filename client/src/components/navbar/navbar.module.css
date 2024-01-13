@@ -1,10 +1,11 @@
 .searchBox{
-        margin-top: 20px;
         display: flex;
         justify-content:space-evenly;
         align-items: center;
+        margin-top: 0;
         margin-left: 200px;
         margin-right: 200px;
+        width: 100%;
 }
 
 .button{
@@ -16,32 +17,53 @@
     font-size: 16px;
 }
 
-@media only screen and (max-width: 600px) {
+.buttonExit{
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 80% 80%;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: red;
+}
+.select{
+    margin-top: 20px;
+    width: 200px;
+    height: 40px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color:#ccc;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+
+/* @media only screen and (max-width: 600px) {
     .searchBox {
         flex-direction: column;
-
+        width: 100vw;
     }
-}
+} */
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
     .searchBox {
         flex-direction: column;
 
     }
-}
+} */
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
 
-}
+} */
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+/* @media only screen and (min-width: 992px) {
     
     
-}
+} */
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
     .searchBox {
         flex-direction: row;
 
     }
-}
+} */

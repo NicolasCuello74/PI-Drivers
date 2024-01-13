@@ -8,7 +8,7 @@ import {
   LOADING,
   POST_DRIVER,
   SET_CURRENT_PAGE,
-  RESETEAR,
+  BORRAR,
 } from "../actions/actions";
 
 let initialState = {
@@ -52,6 +52,12 @@ function rootReducer(state = initialState, action) {
         loading: false,
         detail: action.payload,
       };
+    case BORRAR:
+      return {
+        ...state,
+        filterState: [],
+        currentPage: 1,
+      }
     case LOADING:
       return {
         ...state,
@@ -121,10 +127,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         currentPage: action.payload,
       };
-    case RESETEAR:
-      return{
-        ...state,
-      }
     default:
       return state;
   }

@@ -1,9 +1,7 @@
 .cardsList {
   display: grid;
-  justify-content: center;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  padding: 2rem;
+  grid-gap: 10px;
   margin-left: 60px;
   width: 100%;
 }

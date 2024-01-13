@@ -1,13 +1,15 @@
 .App {
-  margin: auto;
+  margin: auto; 
   font-family: 'Orbitron', sans-serif;
   text-align: center;
-  min-height: calc(100vh);
+  min-height: calc(100vh - 140px);
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .App { width: 100vw; }
+  .App { 
+    width: 100vw;
+  }
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
@@ -23,5 +25,7 @@
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  .App { width: 100vw; }
+  .App { 
+    width: 100vw; 
+  }
 }
