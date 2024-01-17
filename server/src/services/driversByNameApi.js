@@ -2,10 +2,21 @@ const axios = require("axios");
 
 const driversByNameApi = async (name) => {
   if (name) {
-    const url = `http://localhost:5000/drivers?name.forename=${name}`;
-    const response = await axios.get(url);
-    const datas = response.data;
-    const arrayFromApi = datas.map((driver) => {
+    
+   // Utilizamr expresiones regulares para buscar coincidencias
+   const regex = new RegExp(name, "i");
+   const url = `http://localhost:5000/drivers`;
+
+   const response = await axios.get(url);
+   const datas = response.data;
+
+   const filteredDrivers = datas.filter((driver) => {
+     const forenameMatch = regex.test(driver.name.forename);
+     const surnameMatch = regex.test(driver.name.surname);
+     return forenameMatch || surnameMatch;
+   });
+  
+    const arrayFromApi = filteredDrivers.map((driver) => {
       return {
         id: driver.id,
         forename: driver.name.forename,

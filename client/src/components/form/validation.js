@@ -4,6 +4,7 @@ export default function validate(input) { // inputs = { email: "", pass: ""}
     const regexName = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{1,25}$/;
     const regexDescription = /^[a-zA-Z0-9\s.,!?]{1,200}$/;
     const urlRegex = /https?:\/\/[^.]*?(\.[^.]+?)*\/.*?\.(jpg|jpeg|gif|png)/;
+    const fileImage = /(jpg|jpeg|gif|png)/;
     const regexTeams = /^\d+(,\d+)*$/;
 
     //const validateFecha = input.dob.length === 10 && regexFecha.test(input.dob)

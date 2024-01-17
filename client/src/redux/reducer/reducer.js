@@ -12,7 +12,7 @@ import {
 } from "../actions/actions";
 
 let initialState = {
-  loading: true,
+  loading: false,
   allDrivers: [],
   driversCopy: [],
   allTeams: [],
@@ -30,12 +30,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         allDrivers: action.payload,
         driversCopy: action.payload,
+        loading:false,
       };
     case GET_BY_NAME:
       return {
         ...state,
         filterState: action.payload,
         currentPage: 1,
+        loading: false
       };
     case POST_DRIVER:
       return {
@@ -61,7 +63,7 @@ function rootReducer(state = initialState, action) {
     case LOADING:
       return {
         ...state,
-        loading: false,
+        loading: true,
       };
     case ORDER:
       const orderByFilter = state.filterState.slice();

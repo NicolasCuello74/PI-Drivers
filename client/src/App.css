@@ -1,31 +1,66 @@
 .App {
-  margin: auto; 
+  display:flex;
+  flex-direction: column;
+  height: 100vh;
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   min-height: calc(100vh - 140px);
 }
 
-/* Extra small devices (phones, 600px and down) */
+.Contenedor-Titulo{
+  background-color: #d82c11f6 ;
+  height: 110px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Titulo {
+  font-size: 3.1em;
+  color: #ffffff;
+}
+
+.Imagen-F11{
+  margin: 0;
+  padding: 0;
+}
+
+/**Responsive movil **/
 @media only screen and (max-width: 600px) {
   .App { 
     width: 100vw;
   }
+  .Contenedor-Titulo{
+    width: 100vw;
+    flex-direction: column;
+    height: auto;
+  }
 }
-/* Small devices (portrait tablets and large phones, 600px and up) */
+
 @media only screen and (min-width: 600px) {
   .App { width: 100vw; }
+  .Contenedor-Titulo{
+    width: 100vw;
+  }
 }
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .App { width: 100vw; }
+
+@media only screen and (max-width: 800px) {
+  .Titulo {
+    font-size: 2em;
+    color: #ffffff;
+  }
+  
+  .Imagen-F11{
+    height: 50px;
+  }
 }
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  .App { width: 100vw; }
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+
+@media only screen and (max-width: 1220px) {
   .App { 
     width: 100vw; 
+  }
+  .Contenedor-Titulo{
+    width: 100vw;
   }
 }

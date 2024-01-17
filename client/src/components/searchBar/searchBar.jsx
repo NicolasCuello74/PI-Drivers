@@ -34,7 +34,7 @@ return (
         onChange={handleChange}
         placeholder="Buscar por nombre"
       />
-      <input type="submit" value="Buscar" />
+      <input className={style.Input} type="submit" value="Buscar" />
     </form>
   );
 }

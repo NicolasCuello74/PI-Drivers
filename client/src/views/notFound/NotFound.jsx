@@ -4,12 +4,9 @@ const imageURL = "https://img.freepik.com/vector-gratis/error-404-persona-que-bu
 
 function NotFound() {
   return (
-    <div className={Style.imga}>
-      <img src={imageURL} alt="NotFound" />
-      <NavLink to="/home" className={Style.button1}>
-        <button>
-          Go to Home
-        </button>
+    <div className={Style.Contenedor}>
+      <NavLink to="/home" >
+        <img className={Style.imga} src={imageURL} alt="NotFound" />
       </NavLink>
     </div>
   )

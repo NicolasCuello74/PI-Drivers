@@ -15,6 +15,7 @@
 
   .label {
     font-weight: bold;
+    font-size: x-large;
     color: black;
     text-align: center;
     display: flex;
@@ -31,7 +32,7 @@
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    font-size: medium;
+    font-size: 1rem;
     font-weight: bold;
     transition: border-color 0.3s ease-in-out; /* Transición suave del color del borde */
   }
@@ -69,4 +70,3 @@
     font-size: 16px; /* Tamaño del texto de la alerta */
     font-weight: bold; /* Negrita para resaltar la alerta */
   }
-  

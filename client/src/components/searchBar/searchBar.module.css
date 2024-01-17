@@ -21,3 +21,26 @@
   input[type="submit"]:hover {
     background-color: #6bdfaa;
   }
+
+
+  /***Responsive movil***/
+
+@media screen and (max-width: 1220px){
+ .Input{
+  width: 200px;
+  height: 40px;
+ }
+}
+
+@media screen and (max-width: 440px){
+ .form{
+  display: flex;
+  justify-content: center;
+ }
+
+ .Input{
+  width: 120px;
+  height: 30px;
+  margin: 20px;
+ }
+}

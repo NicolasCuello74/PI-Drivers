@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDrivers, setCurrentPage } from "../../redux/actions/actions";
+import Footer from "../../components/footer/Footer";
+import Loading from "../../components/loading/loading";
 import NavBar from "../../components/navbar/navbar";
 import Cards from "../../components/cards/cards";
 import Styles from "../homePage/homePage.module.css";
-import imagenTitulo from "../../../public/Pegatina.jpeg";
+
 function HomePage() {
   const dispatch = useDispatch();
+  const loading = useSelector((state)=> state.loading);
   const allDrivers = useSelector((state) => state.allDrivers);
   const currentPage = useSelector((state) => state.currentPage);
   const filterState = useSelector((state) => state.filterState);
@@ -71,12 +74,10 @@ function HomePage() {
   };
 
   return (
+    loading ? 
+    <Loading/> :
     <>
       <div className={Styles.Contenedor}>
-        <div className={Styles.containerTitulo}>
-          <img className={Styles.imagenTitulo} src={imagenTitulo} />
-          <h2 className={Styles.text}>DRIVERS </h2>
-        </div>
         <NavBar />
         <div className={Styles.home}>
           <Cards

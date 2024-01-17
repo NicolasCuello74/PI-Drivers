@@ -1,0 +1,20 @@
+.footer {
+    background-color: #d82c11f6; /* Fondo rojo */
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .iconContainer {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  .icon {
+    width: 30px; /* Ajusta el tamaño de los iconos según tus preferencias */
+    height: 30px;
+  }
+  
+  .icon:hover {
+    filter: brightness(1.5); /* Efecto de brillo al pasar el ratón por encima del icono */
+  }
+  

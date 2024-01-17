@@ -1,10 +1,15 @@
-.imga{
-    display: flex;
-    justify-content: space-evenly;
-    max-width: '80%';
-    height: 'auto';
+.Contenedor{
+ display: flex;
+ flex-direction: column;
 }
-.button1{
-    display: flex;
-    justify-content: center;
+
+.imga{
+ height: 100vh;
+ width: 100vw;
+}
+.buttonNotFound{
+    padding: 10px;
+    margin: 20px;
+    border-radius: 100%;
+    justify-items: center;
 }

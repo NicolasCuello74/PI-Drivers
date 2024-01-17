@@ -20,7 +20,7 @@
 .buttonExit{
     margin-top: 20px;
     padding: 10px 20px;
-    border-radius: 80% 80%;
+    border-radius: 100%;
     cursor: pointer;
     font-size: 16px;
     background-color: red;
@@ -38,32 +38,43 @@
   }
   
 
-/* @media only screen and (max-width: 600px) {
-    .searchBox {
+/***Responsive movil***/
+
+@media screen and (max-width: 1220px){
+    .searchBox{
+        width: 50%;
+        flex-flow: row wrap;
+    }
+   .button{
+    width: 200px;
+    height: 40px;
+   }
+}
+
+@media screen and (max-width: 946px){
+    .searchBox{
+        width: 50%;
         flex-direction: column;
-        width: 100vw;
     }
-} */
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/* @media only screen and (min-width: 600px) {
-    .searchBox {
+}
+
+@media screen and (max-width: 440px){
+    .searchBox{
+        width: 100%;
         flex-direction: column;
-
+        justify-content: center;
     }
-} */
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {
-
-} */
-/* Large devices (laptops/desktops, 992px and up) */
-/* @media only screen and (min-width: 992px) {
-    
-    
-} */
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {
-    .searchBox {
-        flex-direction: row;
-
+    .select{
+        height: 20px;
+        font-size: 12px;
     }
-} */
+    .button{
+        height: 30px;
+        font-size: 12px;
+        text-align: center;
+    }
+    .buttonExit{
+        font-size: 12px;
+        text-align: center;
+    }
+}

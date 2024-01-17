@@ -1,17 +1,17 @@
 .container {
-  height: 100vh;
-  width: 100%;
-  background-image: url(https://i.pinimg.com/564x/29/02/61/2902613d7f5809a3443c0ad79ac28d15.jpg); /* Ajusta la URL de la imagen */
-  background-position: center center; /* Centra la imagen horizontal y verticalmente */
   display: flex;
   flex-direction: column;
-  justify-items: center;
   justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
 }
 
 .title {
   color: black;
   background-color: aliceblue;
+  font-size: 3em;
 }
 
 .enterButton {
