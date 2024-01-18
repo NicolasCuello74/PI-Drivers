@@ -1,22 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDrivers, setCurrentPage } from "../../redux/actions/actions";
-import Footer from "../../components/footer/Footer";
 import Loading from "../../components/loading/loading";
 import NavBar from "../../components/navbar/navbar";
 import Cards from "../../components/cards/cards";
 import Styles from "../homePage/homePage.module.css";
 
+
 function HomePage() {
   const dispatch = useDispatch();
-  const loading = useSelector((state)=> state.loading);
   const allDrivers = useSelector((state) => state.allDrivers);
   const currentPage = useSelector((state) => state.currentPage);
   const filterState = useSelector((state) => state.filterState);
+  const [showLoading, setShowLoading] = useState(true);
   const driversPerPage = 9;
 
   useEffect(() => {
+    const loadingTimeout = setTimeout(() => {
+      setShowLoading(false);
+    }, 1000);
+
     dispatch(getDrivers());
+
+    return () => clearTimeout(loadingTimeout);
   }, [dispatch]);
 
   //Botones para mostrar segun cantidad de drivers
@@ -74,7 +80,7 @@ function HomePage() {
   };
 
   return (
-    loading ? 
+    showLoading ? 
     <Loading/> :
     <>
       <div className={Styles.Contenedor}>

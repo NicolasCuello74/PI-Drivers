@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-  width: 100vw;
+  width: 90vw;
   margin: 0;
   padding: 0;
 }
@@ -12,6 +12,7 @@
   color: black;
   background-color: aliceblue;
   font-size: 3em;
+  width: 90vw;
 }
 
 .enterButton {
@@ -23,4 +24,30 @@
   border-radius: 15px;
   cursor: wait;
   font-size: 20px;
+}
+
+@media screen and (max-width: 1220px){
+  .container{
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+}
+
+@media screen and (max-width: 600px){
+  .container{
+      width: 100vw;
+      flex-direction: column;
+      justify-content: center;
+  }
+  .title{
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 440px){
+  .title{
+    font-size: 2rem;
+  }
 }
