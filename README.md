@@ -1,7 +1,7 @@
 # **DRIVERS** | Proyecto Individual
 Drivers permite explorar una gran lista de conductores de autos, jugar con filtros para encontrar el conductor preferido según fecha de nacimiento, orden alfabetico y team al que pertenecio. También permite crearlos. Además utiliza un backend con base de datos para almacenar los nuevo conductores creados. Este proyecto se desarrollo como como proyecto individual en el cursado de la carrera de desarrollador Fullstack, en la academia https://SoyHenry.com.
 <br />
-** Tecnologías utilizadas
+# **Tecnologías utilizadas**
 
 -  HTML
 -  CSS
@@ -13,7 +13,7 @@ Drivers permite explorar una gran lista de conductores de autos, jugar con filtr
 -  SEQUELIZE
 
 <br />
-## ** INSTALACION
+## ** INSTALACION**
 1. Clona este repositorio.
 $ git clone https://github.com/NicolasCuello74/PI-Drivers.git
 2. Ejecuta **`npm install`** para instalar las dependencias.
@@ -22,7 +22,7 @@ $ git clone https://github.com/NicolasCuello74/PI-Drivers.git
 -  **Ejecuta **`npm start`** para iniciar el servidor de desarrollo.
 -  **Abre tu navegador y ve a **`http://localhost:3000`** para ver la aplicación.
 <br />
-## ** Constribución 
+## ** Constribución **
 Si deseas contribuir al proyecto, sigue estos pasos:
 1. Haz un fork del repositorio.
 2. Crea una rama con tu funcionalidad: **`git checkout -b feature/nueva-funcionalidad`**
