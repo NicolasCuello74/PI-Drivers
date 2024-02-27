@@ -13,16 +13,19 @@ Drivers permite explorar una gran lista de conductores de autos, jugar con filtr
 -  SEQUELIZE
 
 <br />
-## **INSTALACION**
+# **INSTALACION**
+
 1. Clona este repositorio.
 $ git clone https://github.com/NicolasCuello74/PI-Drivers.git
 2. Ejecuta **`npm install`** para instalar las dependencias.
 <br />
-## **CONFIGURACION**
+# **CONFIGURACION**
+
 -  **Ejecuta **`npm start`** para iniciar el servidor de desarrollo.
 -  **Abre tu navegador y ve a **`http://localhost:3000`** para ver la aplicación.
 <br />
-## **Constribución **
+# **Constribución **
+
 Si deseas contribuir al proyecto, sigue estos pasos:
 1. Haz un fork del repositorio.
 2. Crea una rama con tu funcionalidad: **`git checkout -b feature/nueva-funcionalidad`**
