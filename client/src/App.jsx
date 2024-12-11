@@ -5,7 +5,7 @@ import LandingPage from "./views/landingPage/landingPage";
 import HomePage from "./views/homePage/homePage";
 import DetailPage from "./views/detailPage/detailPage";
 import CreateForm from "./views/createForm/createForm";
-import NotFound from "./views/notFound/NotFound";
+import NotFound from "./views/notFound/notFound";
 import Footer from "./components/footer/Footer";
 function App() {
   return (
