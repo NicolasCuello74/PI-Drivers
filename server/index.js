@@ -1,9 +1,9 @@
 const server = require("./src/server");
 const { conn } = require('./src/db.js');
-const PORT = 3001;
+const {POSTGRES_HOST} = process.env;
 
 conn.sync({ force: false }).then(() => {
-server.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+server.listen(POSTGRES_HOST, () => {
+  console.log(`Server listening on port`);
 })
 }).catch(error => console.error(error))
