@@ -4,7 +4,7 @@ const axios = require("axios");
 const getTeams = async (req, res) => {
   try {
     // Obtener datos de la base de datos del servidor
-    const url = "http://localhost:5000/drivers";
+    const url = "https://pi-drivers-backend.vercel.app/drivers";
     const response = await axios.get(url);
     const equiposServidor = response.data;
     const nombresEquipos = equiposServidor
