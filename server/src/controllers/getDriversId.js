@@ -20,7 +20,7 @@ const getDriversId = async (req, res) => {
       };
       res.status(200).json(cleanedData);
     } else {
-      const url = `https://pi-drivers-backend.vercel.app/drivers/${id}`;
+      const url = `http://localhost:5000/drivers/${id}`;
       const response = await axios.get(url);
       const datas = response.data;
       const {

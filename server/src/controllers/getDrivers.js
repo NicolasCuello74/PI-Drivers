@@ -3,17 +3,19 @@ const { Driver, Team } = require("../db");
 
 const getDrivers = async (req, res) => {
   try {
-    const url = "https://pi-drivers-backend.vercel.app/drivers";
+    const url = "http://localhost:5000/drivers";
     const response = await axios.get(url);
-    const arrayDriversApi = response.data.map((driver) => ({
-        id: driver.id,
-        forename: driver.name.forename,
-        surname: driver.name.surname,
-        description: driver.description,
-        image: driver.image.url,
-        nationality: driver.nationality,
-        dob: driver.dob,
-        teams: driver.teams,
+    const arrayDriversApi = response.data
+    
+    const driversApi = await arrayDriversApi.map((driver) => ({
+      id: driver.id,
+      forename: driver.name?.forename || "N/A",
+      surname: driver.name?.surname || "N/A",
+      description: driver.description || "No description available",
+      image: driver.image?.url || "https://i.pinimg.com/564x/1e/1f/66/1e1f66a3ce77beea31a833f0008648d3.jpg",
+      nationality: driver.nationality || "Unknown",
+      dob: driver.dob || "Unknown",
+      teams: driver.teams || "No teams listed",
       }));
 
 
@@ -36,10 +38,10 @@ const getDrivers = async (req, res) => {
 
     let allDrivers = [];
     
-    if (arrayDriversApi.length > 0 && CleanDriversDb.length > 0) {
-      allDrivers = [...arrayDriversApi, ...CleanDriversDb];
-    } else if (arrayDriversApi.length > 0) {
-      allDrivers = arrayDriversApi;
+    if (driversApi.length > 0 && CleanDriversDb.length > 0) {
+      allDrivers = [...driversApi, ...CleanDriversDb];
+    } else if (driversApi.length > 0) {
+      allDrivers = driversApi;
     } else {
       allDrivers = CleanDriversDb;
     }

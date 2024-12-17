@@ -6,7 +6,6 @@ const {
   getDriversId,
   postDriver,
   getName,
-  getName2,
 } = require("../controllers/index");
 
 const router = Router();

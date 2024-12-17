@@ -5,18 +5,18 @@ const getName = async (req, res) => {
   try {
     const {name} = req.query;
 
-    const driversFromApi = await driversByNameApi(name);
+    //const driversFromApi = await driversByNameApi(name);
     const driversFromDb = await driversByNameDb(name);
 
-     let allDrivers = [];
-    if (driversFromApi && driversFromDb) {
-      allDrivers = [...driversFromApi, ...driversFromDb];
-    } else if (driversFromApi) {
-      allDrivers = driversFromApi;
-    } else {
-      allDrivers = driversFromDb;
-    }
-    const finalResults = allDrivers.slice(0, 15);
+    // let allDrivers = [];
+    // if (driversFromApi && driversFromDb) {
+    //   allDrivers = [...driversFromApi, ...driversFromDb];
+    // } else if (driversFromApi) {
+    //   allDrivers = driversFromApi;
+    // } else {
+    //   allDrivers = driversFromDb;
+    // }
+    const finalResults = driversFromDb.slice(0, 15);
     if(finalResults.length > 0){
       res.status(200).json(finalResults);
     } else {

@@ -5,7 +5,7 @@ const driversByNameApi = async (name) => {
     
    // Utilizamr expresiones regulares para buscar coincidencias
    const regex = new RegExp(name, "i");
-   const url = `https://pi-drivers-backend.vercel.app/drivers`;
+   const url = `http://localhost:5000/drivers`;
 
    const response = await axios.get(url);
    const datas = response.data;
@@ -19,8 +19,8 @@ const driversByNameApi = async (name) => {
     const arrayFromApi = filteredDrivers.map((driver) => {
       return {
         id: driver.id,
-        forename: driver.name.forename,
-        surname: driver.name.surname,
+        forename: driver.name.forename || "N/A",
+        surname: driver.name.surname || "N/A",
         image: driver.image.url,
         description: driver.description,
         teams: driver.teams,
